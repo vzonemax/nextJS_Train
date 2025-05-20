@@ -4,10 +4,22 @@ const Index = () => {
     return (
         <dev>
             <div>
-                <Link href="/">main </Link>
-                <Link href="/users">users</Link>
+                <Link className="link" href="/">
+                    <span className="link">main</span>
+                </Link>
+                <Link href="/users" >
+                    <span className="link">users</span>
+                </Link>
             </div>
             <h1>Main page</h1>
+            <style jsx>
+                {`
+                    .link{
+                        margin: 5px;
+                        color: orange;
+                    }
+                `}
+            </style>
         </dev>
     )
 }
