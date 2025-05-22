@@ -1,12 +1,12 @@
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/router"
 
 export default function () {
-    const {router} = useRouter()
-    console.log(router)
+    const {query} = useRouter()
+    console.log(query)
     return (
         <div>
             Пользователь
-            {/* <p>{router.id}</p> */}
+            <p>{query.id}</p>
         </div>
     )
 }
