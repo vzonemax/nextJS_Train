@@ -1,23 +1,28 @@
 import Link from "next/link";
-import { useState } from "react";
-const Index = () => {
-    const [users, setUsers] = useState([
-        { id: 1, name: 'Maks' },
-        { id: 2, name: 'Iryna' },
-    ])
+import { useEffect, useState } from "react";
+import A from "../components/UI/A";
+import Navbar from "../components/Navbar";
+const Users = ({users}) => {
     return (
-        <dev>
+        <div>
+            <Navbar />
+            <h2>Пользователи:</h2>
             <ul>
                 {users.map(user =>
-                    <li>
-                        <Link href={`/users/${user.id}`}>
-                            {user.name}
-                        </Link>
+                    <li key={user.id}>
+                        <A href={`/users/${user.id}`} text={user.name} />
                     </li>
                 )}
             </ul>
-        </dev>
+        </div>
     )
 }
 
-export default Index;
+export default Users;
+
+export async function getStaticProps() {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+    const users = await response.json();
+    // Props returned will be passed to the page component
+    return { props: { users } }
+}
